@@ -169,6 +169,8 @@ Trained model can be downloaded from [here](https://1drv.ms/u/s!AvJJYu8Th24UjKJp
 ### Results
 <img width="1016" alt="image" src="https://github.com/user-attachments/assets/919f85c6-23fa-4e80-a2d6-3297a4bc52de">
 
+<img width="977" alt="image" src="https://github.com/user-attachments/assets/2e4c314a-e3ef-4ba5-937d-00b2dea9b9c1">
+
 
 ### Inference on Custom Images (Unpaired)
 To test on custom/unpaired images, the cfg file `test_unpaired.yaml` in folder `cfg/test/` should be modified as follows:
