@@ -1,0 +1,81 @@
+#### Test Settings
+test_folder: 'data/LOL/eval15'
+results_folder: './results_scratch'
+diffusion_path:  ""
+
+# hardware setting
+devices: [0]
+
+# pytorch lightning
+accumulate_grad_batches: 1  # Lion only perform well on large batch
+benchmark: True
+enable_checkpointing: True  # customed checkpointing is available
+gradient_clip_val: 1.0  # must for 16 bit training
+gradient_clip_algorithm: 'norm'  # 'norm' or 'value'
+precision: 32  # half precision, or mixed precision
+accelerator: 'auto'
+max_epochs: 1000
+min_epochs: 1
+log_every_n_steps: 5
+detect_anomaly: False 
+deterministic: False
+num_sanity_val_steps: 1 
+check_val_every_n_epoch: 1
+
+# model
+seed: 3407
+in_dim: 6
+unet_dim: 64
+unet_outdim: 3
+dim_mults: !!python/tuple [1, 2, 2, 4, 4, 8]
+use_attn: False
+use_wn: True
+use_instance_norm: True
+weight_init: True
+stronger_cond: True
+train_lr: 0.0004  
+optimizer: 'Lion'  # AdamW or Lion
+
+# Diffusion 
+return_all_timesteps: False
+clip_denoised: True  # clip when reverse process,
+rescale_ratio: 1.0
+timesteps: 100
+on_res: True
+use_center: True
+use_center_sampler: True
+on_cond: 'img_lr'  # img_c, img_lr or h(img_lr)
+sample_mode: 'ddpm'
+loss_type: 'dfpl'
+lpips_type: 'vgg' #'alex', 'vgg', 'squeeze'
+
+# scheduler
+scheduler: null
+warmup: 10
+max_iters: 20
+factor: 0.9
+patience: 50
+min_lr: 0.00004
+optim_mode: 'max'
+
+# encoder
+cond_on_res: True # if on_diffusion_from_scratch = True, cond_on_res = True
+cond_in_dim: 12
+cond_use_wn: True
+
+# dataset
+image_size: 160
+scale_factor: 1.0
+pin_memory: False
+num_workers: 8
+color_space: 'rgb'
+use_dataset: 'LOL+LOLv2+VELOL'
+persistent_workers: True
+train_folders_v1: 'data/LOL/our485'
+train_folders_v2: 'data/LOLv2/LOL-v2/Real_captured/Train'
+train_folders_VE: 'data/VE-LOL-L/VE-LOL-L-Cap-Full/train'
+train_batch_size: 24
+batch_size: 32
+padding: True
+
+

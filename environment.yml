@@ -1,0 +1,24 @@
+name: AnlightenDiff
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+  - pytorch-lightning=1
+  - pytorch=1
+  - cudatoolkit
+  - gradio=4
+  - pydantic
+  - einops
+  - ca-certificates
+  - certifi
+  - openssl
+  - torchvision
+  - fastapi=0.111
+  - scikit-image=0.19.3
+  - pip
+  - pip:
+    - lion-pytorch==0.2.2
+    - lpips==0.1.4
+    - natsort==8.4.0
+    - opencv-python==4.10.0.84
+prefix: /home/cychan/mambaforge-pypy3/envs/AnlightenDiff2

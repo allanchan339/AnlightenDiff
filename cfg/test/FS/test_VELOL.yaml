@@ -1,0 +1,50 @@
+#### Test Settings
+test_folder: 'data/VE-LOL-L/VE-LOL-L-Cap-Full/test'
+results_folder: './results_scratch'
+diffusion_path:  "model/FS/FS_final.ckpt"
+
+# hardware setting
+devices: 1
+
+# pytorch lightning
+precision: 32  # half precision, or mixed precision
+accelerator: 'auto'
+
+# model
+seed: 3407
+in_dim: 6
+unet_dim: 64
+unet_outdim: 3
+dim_mults: !!python/tuple [1, 2, 2, 4, 4, 8]
+use_attn: False
+use_wn: True
+use_instance_norm: True
+weight_init: True
+stronger_cond: True
+
+# Diffusion 
+return_all_timesteps: False
+clip_denoised: True  # clip when reverse process,
+rescale_ratio: 1.0
+timesteps: 100
+on_res: True
+use_center: True
+use_center_sampler: True
+sample_mode: 'ddpm'
+lpips_type: 'vgg' #'alex', 'vgg', 'squeeze'
+
+# encoder
+cond_on_res: True 
+cond_in_dim: 12
+cond_use_wn: True
+
+# dataset
+image_size: 160
+scale_factor: 1.0
+pin_memory: False
+num_workers: 8
+color_space: 'rgb'
+persistent_workers: True
+batch_size: 32
+padding: True
+
