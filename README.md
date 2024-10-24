@@ -190,8 +190,7 @@ To visualize the results using Gradio, run the following command:
 python gradio_demo.py
 ```
 Then run in a local url to see the demo at url `http://127.0.0.1:7860/`
-#TODO: add gradio demo image
-
+<img width="1274" alt="image" src="https://github.com/user-attachments/assets/e5f51c0a-7865-4f94-97de-d9232e347079">
 
 ## Training
 To train the model, run the following command:
