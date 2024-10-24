@@ -19,7 +19,7 @@ Low-light image enhancement aims to improve the visual quality of images capture
 We utilize a Dynamical Regulated Diffusion Anchoring (DRDA) mechanism to dynamically regulate the mean vector of the perturbations φ to incorporate domain knowledge and match the geometry of the data distribution to explore more complex target distributions, which provide larger flexibility for diffusion-based models.
 
 ```math
-  \boldsymbol{x}_t = \sqrt{\bar{\alpha}_t} \boldsymbol{x}_{0} + \sqrt{1-\bar{\alpha}_t} \boldsymbol{\epsilon}_t^\star \label{eq:DRDA}; \boldsymbol{\epsilon}_t^\star \sim \mathcal{N}(\boldsymbol{m}_t, \tilde{\beta}_t \boldsymbol{I})
+  \boldsymbol{x}_t = \sqrt{\bar{\alpha}_t} \boldsymbol{x}_{0} + \sqrt{1-\bar{\alpha}_t} \boldsymbol{\epsilon}_t^\star ; \boldsymbol{\epsilon}_t^\star \sim \mathcal{N}(\boldsymbol{m}_t, \tilde{\beta}_t \boldsymbol{I})
 ```
 (Eqn 12 and 13 in paper)
 
