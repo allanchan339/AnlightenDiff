@@ -3,7 +3,8 @@ by C.-Y. Chan, W.-C. Siu, Y.-H. Chan and H. A Chan
 
 #TODO: Add accepted Journal Name on top
 
-#TODO: Add paper image for name and authors
+<img width="988" alt="image" src="https://github.com/user-attachments/assets/344f3286-dec2-4ff1-b9ec-fcb3c780bd03">
+
 
 ## BibTeX
 Wait IEEE Explore bibtex
@@ -12,7 +13,8 @@ Wait IEEE Explore bibtex
 ### Abstract
 Low-light image enhancement aims to improve the visual quality of images captured under poor illumination. However, enhancing low-light images often introduces image artifacts, color bias, and low SNR. In this work, we propose AnlightenDiff, an anchoring diffusion model for low light image enhancement. Diffusion models can enhance the low light image to well-exposed image by iterative refinement, but require anchoring to ensure that enhanced results remain faithful to the input. We propose a Dynamical Regulated Diffusion Anchoring mechanism and Sampler to anchor the enhancement process. We also propose a Diffusion Feature Perceptual Loss tailored for diffusion based model to utilize different loss functions in image domain. AnlightenDiff demonstrates the effect of diffusion models for low-light enhancement and achieving high perceptual quality results. Our techniques show a promising future direction for applying diffusion models to image enhancement.
 
-#TODO: Add cover image
+<img width="483" alt="image" src="https://github.com/user-attachments/assets/02cd4b58-b3be-4383-88cc-0d2818fb54c6">
+
 ### Dynamical Regulated Diffusion Anchoring (DRDA)
 We utilize a Dynamical Regulated Diffusion Anchoring (DRDA) mechanism to dynamically regulate the mean vector of the perturbations φ to incorporate domain knowledge and match the geometry of the data distribution to explore more complex target distributions, which provide larger flexibility for diffusion-based models.
 
@@ -76,7 +78,6 @@ def q_posterior(self, x_start, x_t, t, center):
     # at T=0, posterior mean = x_start
     posterior_variance = extract(self.posterior_variance, t, x_t.shape)
 
-    # XXX: Why need this?
     posterior_log_variance_clipped = extract(self.posterior_log_variance_clipped, t, x_t.shape)
     return posterior_mean, posterior_variance, posterior_log_variance_clipped
 ```
@@ -88,6 +89,7 @@ We propose the Diffusion Feature Perceptual Loss (DFPL), which is a loss functio
   \mathcal{L}_{\text{DFPL}}(\boldsymbol{x}_0, \boldsymbol{\epsilon}_t, \boldsymbol{\epsilon}_t^{\theta}) = \mathcal{L}_{\text{Image}} \left( \sqrt{\bar{\alpha}_t} \boldsymbol{x}_0 + \sqrt{1-\bar{\alpha}_t} \boldsymbol{\epsilon}_t, \\ 
   \sqrt{\bar{\alpha}_t} \boldsymbol{x}_0 + \sqrt{1-\bar{\alpha}_t} \boldsymbol{\epsilon}_t^{\theta} \right)
 ```
+(As eqn 21 in the paper)
 
 The related code of DFPL (which introduce image level loss for diffusion training) is shown below:
 ```
@@ -165,7 +167,10 @@ Trained model can be downloaded from [here](https://1drv.ms/u/s!AvJJYu8Th24UjKJp
 ```
 
 ### Results
-#TODO: Add results images and figure
+<img width="1016" alt="image" src="https://github.com/user-attachments/assets/919f85c6-23fa-4e80-a2d6-3297a4bc52de">
+
+<img width="977" alt="image" src="https://github.com/user-attachments/assets/2e4c314a-e3ef-4ba5-937d-00b2dea9b9c1">
+
 
 ### Inference on Custom Images (Unpaired)
 To test on custom/unpaired images, the cfg file `test_unpaired.yaml` in folder `cfg/test/` should be modified as follows:
