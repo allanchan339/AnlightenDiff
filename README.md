@@ -179,6 +179,15 @@ Then, run the following command:
 python test_unpaired.py --cfg cfg/test/test_unpaired.yaml
 ```
 
+### Gradio Visualization
+To visualize the results using Gradio, run the following command:
+```
+python gradio_demo.py
+```
+Then run in a local url to see the demo at url `http://127.0.0.1:7860/`
+#TODO: add gradio demo image
+
+
 ## Training
 To train the model, run the following command:
 ```
