@@ -1,9 +1,9 @@
-# AnlightenDiff: Anchoring Diffusion Probabilistic Model on Low Light Image Enhancement (IEEE TIP)
+# AnlightenDiff: Anchoring Diffusion Probabilistic Model on Low Light Image Enhancement (IEEE TIP'24)
 by C.-Y. Chan, W.-C. Siu, Y.-H. Chan and H. A Chan
 
 <img width="988" alt="image" src="https://github.com/user-attachments/assets/344f3286-dec2-4ff1-b9ec-fcb3c780bd03">
 
-
+Click ![Here](https://ieeexplore.ieee.org/document/10740586?source=authoralert) for article.
 ## BibTeX
 ```
 @ARTICLE{10740586,
@@ -11,10 +11,10 @@ by C.-Y. Chan, W.-C. Siu, Y.-H. Chan and H. A Chan
   journal={IEEE Transactions on Image Processing}, 
   title={AnlightenDiff: Anchoring Diffusion Probabilistic Model on Low Light Image Enhancement}, 
   year={2024},
-  volume={},
+  volume={33},
   number={},
-  pages={1-1},
-  keywords={Diffusion models;Noise;Image enhancement;Perturbation methods;Lighting;Noise measurement;Image reconstruction;Predictive models;Diffusion processes;Mathematical models;Low Light Image Enhancement;Image Processing;Deep Learning},
+  pages={6324-6339},
+  keywords={Diffusion models;Noise;Image enhancement;Perturbation methods;Lighting;Noise measurement;Image reconstruction;Predictive models;Diffusion processes;Mathematical models;Low light image enhancement;image processing;deep learning},
   doi={10.1109/TIP.2024.3486610}}
 ```
 
