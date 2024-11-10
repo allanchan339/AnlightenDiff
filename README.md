@@ -3,7 +3,7 @@ by C.-Y. Chan, W.-C. Siu, Y.-H. Chan and H. A Chan
 
 <img width="988" alt="image" src="https://github.com/user-attachments/assets/344f3286-dec2-4ff1-b9ec-fcb3c780bd03">
 
-Click ![Here](https://ieeexplore.ieee.org/document/10740586?source=authoralert) for article in IEEE Xplore.
+Click [Here](https://ieeexplore.ieee.org/document/10740586?source=authoralert) for article in IEEE Xplore.
 ## BibTeX
 ```
 @ARTICLE{10740586,
