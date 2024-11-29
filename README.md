@@ -1,5 +1,5 @@
 # AnlightenDiff: Anchoring Diffusion Probabilistic Model on Low Light Image Enhancement (IEEE TIP'24)
-by C.-Y. Chan, W.-C. Siu, Y.-H. Chan and H. A Chan
+By Cheuk-Yiu Chan, Wan-Chi Siu, Yuk-Hee Chan and H. Anthony Chan
 
 <img width="988" alt="image" src="https://github.com/user-attachments/assets/344f3286-dec2-4ff1-b9ec-fcb3c780bd03">
 
