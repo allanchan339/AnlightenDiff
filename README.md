@@ -123,7 +123,7 @@ To install the dependencies, run the following command:
 
 ```
 git clone https://github.com/allanchan339/AnlightenDiff
-conda env create --name AnlightenDiff --file=environment.yaml
+conda env create --name AnlightenDiff --file=environment.yml
 conda activate AnlightenDiff
 ```
 
@@ -144,10 +144,10 @@ data
         - eval15
         - our485
 
-    - LOLv2
-        - Real_captured
-            - Test
-            - Train
+    - LOL-v2
+      - Real_captured
+          - Test
+          - Train
 
     - VE-LOL-L
         - VE-LOL-L-Cap-Full
