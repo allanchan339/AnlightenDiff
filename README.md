@@ -123,7 +123,7 @@ To install the dependencies, run the following command:
 
 ```
 git clone https://github.com/allanchan339/AnlightenDiff
-conda env create --name AnlightenDiff --file=environment.yml
+conda env create --name AnlightenDiff --file=environment.yaml
 conda activate AnlightenDiff
 ```
 
