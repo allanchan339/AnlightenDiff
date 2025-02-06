@@ -156,7 +156,7 @@ data
 ```
 ## Testing 
 ### Pretrained Models
-Trained model can be downloaded from [here](https://1drv.ms/u/s!AvJJYu8Th24UjKJp4oGJqDoYNlOiKQ?e=h5qwHO)
+Trained model can be downloaded from [here](https://1drv.ms/f/s!AvJJYu8Th24UjKJlv6Cc3i77AF8w-g?e=aAuHUI).
 
 
 ### Evaluation 
@@ -206,5 +206,14 @@ To train the model, run the following command:
 ```
 python train.py --cfg cfg/train/FS/train.yaml
 ```
+
+## TODO
+- [X] Release Pretrained Model (FS)
+- [X] Add Gradio Visualization
+- [X] Enhance README for better understanding, including TL;DR
+- [X] Add Two Step Model 
+- [X] Modify the pretrained download link for both TS and FS
+- [ ] Add Two Step Model Training
+
 ## Contact
 Thanks for looking into this repo! If you have any suggestion or question, feel free to leave a message here or contact me via cy3chan@sfu.edu.hk.
