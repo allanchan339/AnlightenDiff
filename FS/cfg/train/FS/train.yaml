@@ -1,5 +1,5 @@
 #### Test Settings
-test_folder: 'data/LOL/eval15'
+test_folder: '../data/LOL/eval15'
 results_folder: './results_scratch'
 diffusion_path:  ""
 
@@ -71,9 +71,9 @@ num_workers: 8
 color_space: 'rgb'
 use_dataset: 'LOL+LOLv2+VELOL'
 persistent_workers: True
-train_folders_v1: 'data/LOL/our485'
-train_folders_v2: 'data/LOL-v2/Real_captured/Train'
-train_folders_VE: 'data/VE-LOL-L/VE-LOL-L-Cap-Full/train'
+train_folders_v1: '../data/LOL/our485'
+train_folders_v2: '../data/LOL-v2/Real_captured/Train'
+train_folders_VE: '../data/VE-LOL-L/VE-LOL-L-Cap-Full/train'
 train_batch_size: 24
 batch_size: 32
 padding: True

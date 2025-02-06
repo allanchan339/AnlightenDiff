@@ -1,7 +1,7 @@
 #### Test Settings
-test_folder: 'data/VE-LOL-L/VE-LOL-L-Cap-Full/test'
-results_folder: './results_scratch'
-diffusion_path:  "model/FS/FS_final.ckpt"
+test_folder: '../data/LOL/eval15'
+results_folder: './results_LOL'
+diffusion_path: "model/twostep_final.ckpt" 
 
 # hardware setting
 devices: 1
@@ -20,7 +20,7 @@ use_attn: False
 use_wn: True
 use_instance_norm: True
 weight_init: True
-stronger_cond: True
+stronger_cond: False
 
 # Diffusion 
 return_all_timesteps: False
@@ -28,13 +28,15 @@ clip_denoised: True  # clip when reverse process,
 rescale_ratio: 1.0
 timesteps: 100
 on_res: True
+on_center: 'img_c' 
+on_cond: 'img_lr'  
+sample_mode: 'ddpm'
+color_space: 'rgb'
 use_center: True
 use_center_sampler: True
-sample_mode: 'ddpm'
-lpips_type: 'vgg' #'alex', 'vgg', 'squeeze'
 
 # encoder
-cond_on_res: True 
+cond_on_res: False # if on_diffusion_from_scratch = True, cond_on_res = True
 cond_in_dim: 12
 cond_use_wn: True
 
@@ -43,8 +45,6 @@ image_size: 160
 scale_factor: 1.0
 pin_memory: False
 num_workers: 8
-color_space: 'rgb'
 persistent_workers: True
 batch_size: 32
-padding: True
-
+padding: False

@@ -5,60 +5,6 @@ from torch import nn
 import torch.nn.functional as F
 from utils.module_util import make_layer, initialize_weights
 
-
-class RRDBNet(nn.Module):
-    def __init__(self, config):
-        super(RRDBNet, self).__init__()
-        nf = config.rrdb_num_feat
-        in_nc = config.in_nc
-        nb = config.rrdb_num_block
-        out_nc = config.out_nc
-        gc = config.gc
-        RRDB_block_f = functools.partial(RRDB, nf=nf, gc=gc)
-
-        self.conv_first = nn.Conv2d(in_nc, nf, 3, 1, 1, bias=True)
-        self.RRDB_trunk = make_layer(RRDB_block_f, nb)
-        self.trunk_conv = nn.Conv2d(nf, nf, 3, 1, 1, bias=True)
-        # upsampling
-        # self.upconv1 = nn.Conv2d(nf, nf, 3, 1, 1, bias=True)
-        # self.upconv2 = nn.Conv2d(nf, nf, 3, 1, 1, bias=True)
-        # # if hparams['sr_scale'] == 8:
-        # self.upconv3 = nn.Conv2d(nf, nf, 3, 1, 1, bias=True)
-        self.conv_last2 = nn.Conv2d(nf, nf, 3, 1, 1, bias=True)
-        self.conv_last = nn.Conv2d(nf, out_nc, 3, 1, 1, bias=True)
-
-        self.lrelu = nn.GELU() 
-
-    def forward(self, x, get_fea=False):
-        feas = []
-        # x = (x + 1) / 2 
-        fea_first = fea = self.conv_first(x) #[1,32,160,160]
-        for l in self.RRDB_trunk:
-            fea = l(fea)
-            feas.append(fea)
-        trunk = self.trunk_conv(fea)
-        fea = fea_first + trunk
-        feas.append(fea)
-
-        # fea = self.lrelu(self.upconv1(F.interpolate(
-        #     fea, scale_factor=2, mode='nearest')))
-        # fea = self.lrelu(self.upconv2(F.interpolate(
-        #     fea, scale_factor=2, mode='nearest')))
-        # # if hparams['sr_scale'] == 8:
-        # fea = self.lrelu(self.upconv3(F.interpolate(
-        #         fea, scale_factor=2, mode='nearest')))
-        # fea_hr = self.HRconv(fea)
-
-        fea = self.conv_last2(fea)
-        fea = self.lrelu(fea)
-        out = self.conv_last(fea)
-        # out = out.clamp(-1, 1) # XXX: check if we can use it as cond
-        # out = out * 2 - 1 #[0,1]
-        if get_fea:
-            return out, feas #rrdb_out, cond
-        else:
-            return out
-
 class DummyModel(nn.Module):
     def __init__(self):
         super().__init__()
@@ -197,17 +143,3 @@ class Unet(nn.Module):
                 return
 
         self.apply(remove_weight_norm)
-
-
-if __name__ == '__main__':
-    b = 1
-    x = torch.rand([b,3,160,160])
-    time = torch.randint(0,100,[b])
-    img_lr = torch.rand([b,3,20,20]) 
-    # cond = [img_lr]*9 # If use rrdb, all feature in blocks is collected, else cond = img_lr
-    img_lr_up = torch.rand([b,3,160,160])
-    rrdb_num_feat, rrdb_num_block, gc = 32, 8, 32//2
-    rrdb = RRDBNet(3, 3, nf=rrdb_num_feat, nb=rrdb_num_block, gc=gc) # should have trained when diffusion training
-    rrdb_out, cond = rrdb(img_lr, get_fea=True)
-    model = Unet(64, 3)
-    out = model(x, time, cond=cond)

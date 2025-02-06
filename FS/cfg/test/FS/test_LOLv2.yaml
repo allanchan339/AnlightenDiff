@@ -1,7 +1,7 @@
 #### Test Settings
-test_folder_unpaired: 'WHERE THE INPUT FOLDER IS'
-results_folder_unpaired: 'WHERE THE OUTPUT FOLDER IS'
-diffusion_path:  "model/FS/FS_final.ckpt"
+test_folder: '../data/LOL-v2/Real_captured/Test'
+results_folder: './results_scratch'
+diffusion_path:  "model/FS_final.ckpt"
 
 # hardware setting
 devices: 1

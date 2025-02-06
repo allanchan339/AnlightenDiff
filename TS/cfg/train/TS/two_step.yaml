@@ -1,0 +1,130 @@
+#### Test Settings
+on_diffusion_from_scratch: False
+test_folder: 'data/LOL/eval15'
+results_folder: './results_'
+diffusion_path:  "" #"train_sd/1bsreu2v/checkpoints/epoch=937-monitor=2.62.ckpt"
+use_wandb: True
+fast_dev_run: False  # use for debug if int or True are set, False for normal training
+
+# hardware setting
+devices: [0, 1]
+strategy: 'ddp'
+
+# wandb setting
+group: 'AblationStudyl2'
+entity: 'enlightdiff'
+project: 'train_sd_e2'
+project_encoder: 'sd_cond_encoder'
+project_he : 'sd_he'
+project_diffusion_from_scratch : 'train_sd_center_e'
+group_test: 'test_only'
+
+# pytorch lightning
+accumulate_grad_batches: 1  # Lion only perform well on large batch
+benchmark: True
+enable_checkpointing: True  # customed checkpointing is available
+gradient_clip_val: 1.0  # must for 16 bit training
+gradient_clip_algorithm: 'norm'  # 'norm' or 'value'
+precision: 32  # half precision, or mixed precision
+accelerator: 'auto'
+max_epochs: 1000
+min_epochs: 1
+# strategy: 'ddp'
+log_every_n_steps: 5
+detect_anomaly: True 
+deterministic: False
+num_sanity_val_steps: 1 
+check_val_every_n_epoch: 1
+
+# model
+seed: 3407
+in_dim: 6
+unet_dim: 64
+unet_outdim: 3
+dim_mults: !!python/tuple [1, 2, 2, 4, 4, 8]
+use_attn: False
+use_wn: True
+use_instance_norm: True
+weight_init: True
+train_lr: 0.0004  # if Lion optimzer, lr/=5
+optimizer: 'Lion'  # AdamW or Lion
+
+# Diffusion 
+stronger_cond: False
+return_all_timesteps: False
+clip_denoised: True  # clip when reverse process,
+rescale_ratio: 1.0
+timesteps: 100
+on_res: True
+zeta: "h_theta(img_lr)" #scalar or h(img_lr) or h(img_c) or img_lr or 3triple or h_theta(img_lr) or center=h_theta(img_lr)
+zeta_coeff: 1.0
+zeta_power: 1
+use_center: True
+use_center_sampler: True
+on_center: 'img_c' # img_c, img_lr or h(img_lr) 
+on_cond: 'img_lr'  # img_c, img_lr or h(img_lr)
+sample_mode: 'ddpm'
+loss_type: 'l2'
+lpips_type: 'vgg' #'alex', 'vgg', 'squeeze'
+
+# scheduler
+scheduler: null
+warmup: 10
+max_iters: 20
+factor: 0.9
+patience: 50
+min_lr: 0.00004
+optim_mode: 'max'
+
+# encoder
+cond_on_res: False # if on_diffusion_from_scratch = True, cond_on_res = True
+cond_in_dim: 12
+cond_use_wn: True
+cond_loss_type: 'ssim'
+cond_lr: 0.0004
+cond_optimizer: 'Lion' 
+cond_scheduler: null # cosine, plateau or None
+cond_min_lr: 0.00004
+cond_optim_target: 'valid/ms-ssim'
+cond_optim_mode: 'max'
+cond_patience: 20
+cond_factor: 0.5
+cond_num_workers: 8
+
+# he
+he_on_res: True
+he_ref_he: False
+he_input_he: True
+he_cond: 'img_c' # None, img_c
+he_in_dim: 6 #if img_c is on cond, in_dim = 6
+he_loss_type: 'lpips'
+he_lr: 0.0004
+he_optimizer: 'AdamW'
+he_use_wn: True
+he_scheduler: null  # cosine, plateau or None
+he_min_lr: 0.00004
+he_optim_target: 'valid/psnr'
+he_optim_mode: 'max'
+he_patience: 20
+he_factor: 0.5
+he_num_workers: 8
+
+# dataset
+image_size: 160
+scale_factor: 1.0
+pin_memory: False
+num_workers: 8
+color_space: 'rgb'
+use_dataset: 'LOL+LOLv2+VELOL'
+persistent_workers: True
+train_folders_v1: 'data/LOL/our485'
+train_folders_v2: 'data/LOLv2/LOL-v2/Real_captured/Train'
+train_folders_VE: 'data/VE-LOL-L/VE-LOL-L-Cap-Full/train'
+train_batch_size: 32
+batch_size: 32
+
+# checkpoint 
+encoder_path: 'sd_cond_encoder/r8ktgs7q/checkpoints/epoch=929-monitor=0.93.ckpt'
+he_path: 'sd_he/syqoavc5/checkpoints/epoch=868-monitor=0.93.ckpt'
+
+

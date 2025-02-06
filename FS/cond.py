@@ -1,5 +1,4 @@
 import torch 
-from model import Unet
 import pytorch_lightning as pl
 from torch.optim import AdamW, lr_scheduler
 from lion_pytorch import Lion
@@ -211,7 +210,7 @@ class LitCond(pl.LightningModule):
         psnr_metric = PeakSignalNoiseRatio().to(self.device)
 
         img_lr, img_hr, name_list = batch
-        input = cond_data_transforms(img_lr, self.hparams.ablation)
+        input = cond_data_transforms(img_lr)
         ref = color_map(img_hr)
         output, feats = self.model(input)
         output = output.clamp(0, 1)  # output must be positive
@@ -231,7 +230,7 @@ class LitCond(pl.LightningModule):
     def training_step(self, batch, batch_idx):
         stage = 'train'
         img_lr, img_hr, name_list = batch
-        input = cond_data_transforms(img_lr, self.hparams.ablation)
+        input = cond_data_transforms(img_lr)
         ref = color_map(img_hr)
         output, feats = self.model(input)
         loss = self.loss_fn(output, ref)
@@ -278,7 +277,7 @@ class LitCond(pl.LightningModule):
         self._valid_test_epoch_end(self.test_step_outputs, 'test')
 
     def forward(self, img_lr):
-        input = cond_data_transforms(img_lr, self.hparams.ablation)
+        input = cond_data_transforms(img_lr)
         output = self.model(input)
         return output
     
