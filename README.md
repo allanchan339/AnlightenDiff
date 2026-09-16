@@ -127,6 +127,19 @@ conda env create --name AnlightenDiff --file=environment.yaml
 conda activate AnlightenDiff
 ```
 
+Alternatively (with fully pinned versions), use [uv](https://docs.astral.sh/uv/) and the lock file `requirements.lock.txt`:
+
+```
+git clone https://github.com/allanchan339/AnlightenDiff
+cd AnlightenDiff
+uv venv --python 3.9.25 .venv
+uv pip install --python .venv/bin/python torch==2.1.2+cu121 torchvision==0.16.2+cu121 --index-url https://download.pytorch.org/whl/cu121
+uv pip install --python .venv/bin/python --no-deps -r requirements.lock.txt
+source .venv/bin/activate
+```
+
+All dependencies are pinned to exact tested versions in `requirements.lock.txt` (Python 3.9.25, torch 2.1.2+cu121, gradio 4.44.1, pytorch-lightning 1.9.5, pydantic 2.9.2, numpy 1.26.4). torch/torchvision come from the PyTorch cu121 index; everything else from PyPI.
+
 ### Dataset
 We use LOL, VELOL and LOL-v2 datasets for training and testing. You can download the datasets from the following links:
 
